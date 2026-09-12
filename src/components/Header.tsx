@@ -1,11 +1,30 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useRef } from "react";
 import { CartDrawer } from "./CartDrawer";
 
 export function Header() {
+  const navigate = useNavigate();
+  const clicks = useRef(0);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLogoClick = () => {
+    clicks.current += 1;
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
+      clicks.current = 0;
+    }, 2000);
+
+    if (clicks.current >= 5) {
+      clicks.current = 0;
+      if (timer.current) clearTimeout(timer.current);
+      navigate({ to: "/admin" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2" onClick={handleLogoClick}>
           <span className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             Sri Vishnu Priya
           </span>
