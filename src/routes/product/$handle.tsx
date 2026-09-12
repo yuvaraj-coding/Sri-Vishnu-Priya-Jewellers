@@ -2,12 +2,12 @@ import { createFileRoute, useLoaderData, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, ChevronLeft } from "lucide-react";
-import { getProductByHandle } from "@/lib/shopify.functions";
+import { fetchProductByHandle } from "@/lib/shopify";
 import { useCartStore, type CartItem } from "@/stores/cartStore";
 
 export const Route = createFileRoute("/product/$handle")({
   component: ProductPage,
-  loader: ({ params }) => getProductByHandle({ handle: params.handle }),
+  loader: async ({ params }) => fetchProductByHandle(params.handle),
   head: ({ params }) => ({
     meta: [
       { title: `Product | Sri Vishnu Priya Jewellers` },
