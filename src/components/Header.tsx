@@ -1,0 +1,31 @@
+import { Link } from "@tanstack/react-router";
+import { CartDrawer } from "./CartDrawer";
+
+export function Header() {
+  return (
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+            Sri Vishnu Priya
+          </span>
+          <span className="hidden text-xs uppercase tracking-widest text-muted-foreground sm:inline">
+            Jewellers
+          </span>
+        </Link>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground md:flex">
+          <Link to="/" className="transition-colors hover:text-gold">
+            Home
+          </Link>
+          <a href="#collections" className="transition-colors hover:text-gold">
+            Collections
+          </a>
+          <a href="#about" className="transition-colors hover:text-gold">
+            About
+          </a>
+        </nav>
+        <CartDrawer />
+      </div>
+    </header>
+  );
+}
