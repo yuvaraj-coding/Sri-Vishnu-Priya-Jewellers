@@ -12,7 +12,7 @@ export function Header() {
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       clicks.current = 0;
-    }, 2000);
+    }, 3000);
 
     if (clicks.current >= 5) {
       e.preventDefault();
