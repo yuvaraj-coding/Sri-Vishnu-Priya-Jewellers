@@ -7,7 +7,7 @@ export function Header() {
   const clicks = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (e: React.MouseEvent) => {
     clicks.current += 1;
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
@@ -15,6 +15,7 @@ export function Header() {
     }, 2000);
 
     if (clicks.current >= 5) {
+      e.preventDefault();
       clicks.current = 0;
       if (timer.current) clearTimeout(timer.current);
       navigate({ to: "/admin" });
