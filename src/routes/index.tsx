@@ -1,6 +1,7 @@
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Hero } from "@/components/Hero";
 import { ProductGrid } from "@/components/ProductGrid";
+import { CollectionSections } from "@/components/CollectionSections";
 import { getProducts } from "@/lib/shopify.functions";
 
 export const Route = createFileRoute("/")({
@@ -40,7 +41,12 @@ function Index() {
             Handpicked jewellery for every occasion
           </p>
         </div>
-        <ProductGrid products={products} />
+        <CollectionSections />
+        {products.length > 0 && (
+          <div className="mt-14">
+            <ProductGrid products={products} />
+          </div>
+        )}
       </section>
       <section id="about" className="border-t border-border bg-secondary">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
