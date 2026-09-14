@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,9 +11,14 @@ import {
   fetchItems,
   formatPrice,
 } from "@/lib/catalog";
+import { isAdminUnlocked, lockAdmin } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
+  beforeLoad: async () => {
+    const { unlocked } = await isAdminUnlocked();
+    if (!unlocked) throw redirect({ to: "/unlock" });
+  },
   component: AdminPage,
   head: () => ({
     meta: [
@@ -39,6 +44,7 @@ const buttonClass =
 
 function AdminPage() {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const collections = useQuery({ queryKey: ["collections"], queryFn: fetchCollections });
   const items = useQuery({ queryKey: ["items"], queryFn: fetchItems });
 
@@ -102,11 +108,22 @@ function AdminPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <header className="mb-10">
-        <h1 className="font-display text-3xl font-medium text-foreground">Admin</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Add collections and jewellery items shown on your home page.
-        </p>
+      <header className="mb-10 flex items-start justify-between gap-4">
+        <div>
+          <h1 className="font-display text-3xl font-medium text-foreground">Admin</h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Add collections and jewellery items shown on your home page.
+          </p>
+        </div>
+        <button
+          onClick={async () => {
+            await lockAdmin();
+            await router.navigate({ to: "/unlock" });
+          }}
+          className="shrink-0 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Lock
+        </button>
       </header>
 
       <section className="rounded-2xl border border-border bg-card p-6">
