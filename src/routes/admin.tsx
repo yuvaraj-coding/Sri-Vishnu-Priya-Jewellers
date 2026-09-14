@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,9 +11,14 @@ import {
   fetchItems,
   formatPrice,
 } from "@/lib/catalog";
+import { isAdminUnlocked, lockAdmin } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
+  beforeLoad: async () => {
+    const { unlocked } = await isAdminUnlocked();
+    if (!unlocked) throw redirect({ to: "/unlock" });
+  },
   component: AdminPage,
   head: () => ({
     meta: [
