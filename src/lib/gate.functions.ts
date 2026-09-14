@@ -6,7 +6,9 @@ const sessionConfig = {
   password: process.env["SESSION_SECRET"] ?? "development-only-session-secret-please-set-me",
   name: "admin-gate",
   maxAge: 60 * 60 * 24 * 7,
-  cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
+  // sameSite "none" so the cookie is stored when the app runs inside the
+  // Lovable preview iframe (cross-site context). Requires secure: true.
+  cookie: { httpOnly: true, secure: true, sameSite: "none" as const, path: "/" },
 };
 
 type GateSession = { unlocked?: boolean };
