@@ -38,10 +38,10 @@ export function Header() {
             Home
           </Link>
           <Link to="/collections" className="transition-colors hover:text-gold">
-            Collections
+            Explore Collections
           </Link>
           <Link to="/about" className="transition-colors hover:text-gold">
-            About
+            Our Story
           </Link>
         </nav>
         <CartDrawer />
