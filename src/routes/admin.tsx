@@ -261,18 +261,7 @@ function AdminPage() {
               onChange={(e) => setItemPrice(e.target.value)}
             />
           </div>
-          <div>
-            <label className={labelClass} htmlFor="item-image">
-              Image link (optional)
-            </label>
-            <input
-              id="item-image"
-              className={inputClass}
-              value={itemImage}
-              onChange={(e) => setItemImage(e.target.value)}
-              placeholder="https://..."
-            />
-          </div>
+          <ImagePicker label="Photo (optional)" value={itemImage} onChange={setItemImage} />
           <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="item-desc">
               Description (optional)
