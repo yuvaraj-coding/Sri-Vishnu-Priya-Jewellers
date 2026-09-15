@@ -37,12 +37,12 @@ export function Header() {
           <Link to="/" className="transition-colors hover:text-gold">
             Home
           </Link>
-          <a href="#collections" className="transition-colors hover:text-gold">
+          <Link to="/collections" className="transition-colors hover:text-gold">
             Collections
-          </a>
-          <a href="#about" className="transition-colors hover:text-gold">
+          </Link>
+          <Link to="/about" className="transition-colors hover:text-gold">
             About
-          </a>
+          </Link>
         </nav>
         <CartDrawer />
       </div>
