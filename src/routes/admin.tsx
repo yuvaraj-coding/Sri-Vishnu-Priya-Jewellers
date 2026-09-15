@@ -12,6 +12,7 @@ import {
   formatPrice,
 } from "@/lib/catalog";
 import { isAdminUnlocked, lockAdmin } from "@/lib/gate.functions";
+import ImagePicker from "@/components/ImagePicker";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
