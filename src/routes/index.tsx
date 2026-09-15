@@ -1,12 +1,8 @@
-import { createFileRoute, useLoaderData } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/Hero";
-import { ProductGrid } from "@/components/ProductGrid";
-import { CollectionSections } from "@/components/CollectionSections";
-import { getProducts } from "@/lib/shopify.functions";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  loader: () => getProducts(),
   head: () => ({
     meta: [
       { title: "Sri Vishnu Priya Jewellers | Timeless Gold & Diamond Jewellery" },
@@ -27,35 +23,38 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const products = useLoaderData({ from: "/" });
-
   return (
     <main className="min-h-screen bg-background">
       <Hero />
-      <section id="collections" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="text-center">
           <h2 className="font-display text-3xl font-medium text-foreground sm:text-4xl">
             Our Collections
           </h2>
           <p className="mt-3 text-muted-foreground">
             Handpicked jewellery for every occasion
           </p>
+          <Link
+            to="/collections"
+            className="mt-6 inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-sm font-medium text-gold-foreground transition-colors hover:bg-gold/90"
+          >
+            Explore Collections
+          </Link>
         </div>
-        <CollectionSections />
-        {products.length > 0 && (
-          <div className="mt-14">
-            <ProductGrid products={products} />
-          </div>
-        )}
       </section>
-      <section id="about" className="border-t border-border bg-secondary">
+      <section className="border-t border-border bg-secondary">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-medium text-foreground">About Us</h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Sri Vishnu Priya Jewellers has been a trusted name in fine jewellery for decades. We
-            blend traditional craftsmanship with contemporary designs to bring you pieces that are
-            cherished for a lifetime.
+            A trusted name in fine jewellery — traditional craftsmanship with contemporary
+            designs.
           </p>
+          <Link
+            to="/about"
+            className="mt-6 inline-flex items-center justify-center rounded-md border border-gold px-6 py-3 text-sm font-medium text-gold transition-colors hover:bg-gold hover:text-gold-foreground"
+          >
+            Read Our Story
+          </Link>
         </div>
       </section>
     </main>
