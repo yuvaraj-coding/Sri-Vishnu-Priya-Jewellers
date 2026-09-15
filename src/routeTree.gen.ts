@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as UnlockRouteImport } from './routes/unlock'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
 import { Route as ApiPublicCatalogImageNameRouteImport } from './routes/api/public/catalog-image.$name'
@@ -20,9 +22,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsRoute = CollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UnlockRoute = UnlockRouteImport.update({
@@ -44,14 +56,18 @@ const ApiPublicCatalogImageNameRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
@@ -59,7 +75,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
@@ -68,21 +86,27 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/admin'
+    | '/collections'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/admin'
+    | '/collections'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/admin'
+    | '/collections'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
@@ -90,7 +114,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  CollectionsRoute: typeof CollectionsRoute
   UnlockRoute: typeof UnlockRoute
   ProductHandleRoute: typeof ProductHandleRoute
   ApiPublicCatalogImageNameRoute: typeof ApiPublicCatalogImageNameRoute
@@ -105,11 +131,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections': {
+      id: '/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/unlock': {
@@ -138,7 +178,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  CollectionsRoute: CollectionsRoute,
   UnlockRoute: UnlockRoute,
   ProductHandleRoute: ProductHandleRoute,
   ApiPublicCatalogImageNameRoute: ApiPublicCatalogImageNameRoute,
