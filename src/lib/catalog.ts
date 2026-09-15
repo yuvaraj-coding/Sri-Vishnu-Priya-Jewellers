@@ -87,7 +87,7 @@ export async function uploadCatalogImage(file: File): Promise<string> {
   const ext = (file.name.split(".").pop() ?? "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
   const name = `${crypto.randomUUID()}.${ext || "jpg"}`;
   const { error } = await supabase.storage.from(IMAGE_BUCKET).upload(name, file, {
-    contentType: file.type || undefined,
+    ...(file.type ? { contentType: file.type } : {}),
     upsert: false,
   });
   if (error) throw error;
