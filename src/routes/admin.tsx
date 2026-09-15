@@ -12,6 +12,7 @@ import {
   formatPrice,
 } from "@/lib/catalog";
 import { isAdminUnlocked, lockAdmin } from "@/lib/gate.functions";
+import ImagePicker from "@/components/ImagePicker";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -153,18 +154,7 @@ function AdminPage() {
               required
             />
           </div>
-          <div>
-            <label className={labelClass} htmlFor="col-image">
-              Image link (optional)
-            </label>
-            <input
-              id="col-image"
-              className={inputClass}
-              value={colImage}
-              onChange={(e) => setColImage(e.target.value)}
-              placeholder="https://..."
-            />
-          </div>
+          <ImagePicker label="Photo (optional)" value={colImage} onChange={setColImage} />
           <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="col-desc">
               Description (optional)
@@ -272,18 +262,7 @@ function AdminPage() {
               onChange={(e) => setItemPrice(e.target.value)}
             />
           </div>
-          <div>
-            <label className={labelClass} htmlFor="item-image">
-              Image link (optional)
-            </label>
-            <input
-              id="item-image"
-              className={inputClass}
-              value={itemImage}
-              onChange={(e) => setItemImage(e.target.value)}
-              placeholder="https://..."
-            />
-          </div>
+          <ImagePicker label="Photo (optional)" value={itemImage} onChange={setItemImage} />
           <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="item-desc">
               Description (optional)

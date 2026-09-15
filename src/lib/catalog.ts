@@ -79,3 +79,17 @@ export function formatPrice(price: number | null, currency = "INR") {
     maximumFractionDigits: 0,
   }).format(price);
 }
+
+const IMAGE_BUCKET = "catalog-images";
+
+/** Uploads a photo picked from the device and returns a public URL for it. */
+export async function uploadCatalogImage(file: File): Promise<string> {
+  const ext = (file.name.split(".").pop() ?? "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const name = `${crypto.randomUUID()}.${ext || "jpg"}`;
+  const { error } = await supabase.storage.from(IMAGE_BUCKET).upload(name, file, {
+    ...(file.type ? { contentType: file.type } : {}),
+    upsert: false,
+  });
+  if (error) throw error;
+  return `/api/public/catalog-image/${name}`;
+}

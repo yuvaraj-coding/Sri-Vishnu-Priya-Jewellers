@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as UnlockRouteImport } from './routes/unlock'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
+import { Route as ApiPublicCatalogImageNameRouteImport } from './routes/api/public/catalog-image.$name'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,26 @@ const ProductHandleRoute = ProductHandleRouteImport.update({
   path: '/product/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicCatalogImageNameRoute =
+  ApiPublicCatalogImageNameRouteImport.update({
+    id: '/api/public/catalog-image/$name',
+    path: '/api/public/catalog-image/$name',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +62,30 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
+  '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/unlock' | '/product/$handle'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/unlock'
+    | '/product/$handle'
+    | '/api/public/catalog-image/$name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/unlock' | '/product/$handle'
-  id: '__root__' | '/' | '/admin' | '/unlock' | '/product/$handle'
+  to:
+    | '/'
+    | '/admin'
+    | '/unlock'
+    | '/product/$handle'
+    | '/api/public/catalog-image/$name'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/unlock'
+    | '/product/$handle'
+    | '/api/public/catalog-image/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +93,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   UnlockRoute: typeof UnlockRoute
   ProductHandleRoute: typeof ProductHandleRoute
+  ApiPublicCatalogImageNameRoute: typeof ApiPublicCatalogImageNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/catalog-image/$name': {
+      id: '/api/public/catalog-image/$name'
+      path: '/api/public/catalog-image/$name'
+      fullPath: '/api/public/catalog-image/$name'
+      preLoaderRoute: typeof ApiPublicCatalogImageNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +141,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   UnlockRoute: UnlockRoute,
   ProductHandleRoute: ProductHandleRoute,
+  ApiPublicCatalogImageNameRoute: ApiPublicCatalogImageNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
