@@ -40,9 +40,6 @@ export function Header() {
           <Link to="/collections" className="transition-colors hover:text-gold">
             Explore Collections
           </Link>
-          <Link to="/about" className="transition-colors hover:text-gold">
-            Our Story
-          </Link>
           <Link to="/contact" className="transition-colors hover:text-gold">
             Contact Us
           </Link>
