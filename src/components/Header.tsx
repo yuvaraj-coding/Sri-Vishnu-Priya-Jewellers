@@ -43,6 +43,9 @@ export function Header() {
           <Link to="/about" className="transition-colors hover:text-gold">
             Our Story
           </Link>
+          <Link to="/contact" className="transition-colors hover:text-gold">
+            Contact Us
+          </Link>
         </nav>
         <CartDrawer />
       </div>

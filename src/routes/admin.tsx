@@ -13,6 +13,7 @@ import {
 } from "@/lib/catalog";
 import { isAdminUnlocked, lockAdmin } from "@/lib/gate.functions";
 import ImagePicker from "@/components/ImagePicker";
+import { ShopInfoEditor } from "@/components/ShopInfoEditor";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -310,6 +311,8 @@ function AdminPage() {
           ))}
         </div>
       </section>
+
+      <ShopInfoEditor />
     </div>
   );
 }
