@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CollectionsRouteImport } from './routes/collections'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as UnlockRouteImport } from './routes/unlock'
 import { Route as ProductHandleRouteImport } from './routes/product/$handle'
 import { Route as ApiPublicCatalogImageNameRouteImport } from './routes/api/public/catalog-image.$name'
@@ -37,6 +38,11 @@ const CollectionsRoute = CollectionsRouteImport.update({
   path: '/collections',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UnlockRoute = UnlockRouteImport.update({
   id: '/unlock',
   path: '/unlock',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
   '/unlock': typeof UnlockRoute
   '/product/$handle': typeof ProductHandleRoute
   '/api/public/catalog-image/$name': typeof ApiPublicCatalogImageNameRoute
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/collections'
+    | '/contact'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/collections'
+    | '/contact'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/collections'
+    | '/contact'
     | '/unlock'
     | '/product/$handle'
     | '/api/public/catalog-image/$name'
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   CollectionsRoute: typeof CollectionsRoute
+  ContactRoute: typeof ContactRoute
   UnlockRoute: typeof UnlockRoute
   ProductHandleRoute: typeof ProductHandleRoute
   ApiPublicCatalogImageNameRoute: typeof ApiPublicCatalogImageNameRoute
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/unlock': {
       id: '/unlock'
       path: '/unlock'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   CollectionsRoute: CollectionsRoute,
+  ContactRoute: ContactRoute,
   UnlockRoute: UnlockRoute,
   ProductHandleRoute: ProductHandleRoute,
   ApiPublicCatalogImageNameRoute: ApiPublicCatalogImageNameRoute,
