@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { fetchShopInfo, saveShopInfo, type ShopInfo } from "@/lib/shopInfo";
+import { fetchShopInfo, saveShopInfo } from "@/lib/shopInfo";
 
 const inputClass =
   "w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-gold";
@@ -53,7 +53,7 @@ export function ShopInfoEditor() {
         hours: form.hours.trim() || null,
         map_url: form.map_url.trim() || null,
         note: form.note.trim() || null,
-      } as ShopInfo),
+      }),
     onSuccess: () => {
       toast.success("Contact details saved");
       queryClient.invalidateQueries({ queryKey: ["shop_info"] });

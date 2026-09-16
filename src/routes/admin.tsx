@@ -311,6 +311,8 @@ function AdminPage() {
           ))}
         </div>
       </section>
+
+      <ShopInfoEditor />
     </div>
   );
 }
