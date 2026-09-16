@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -138,6 +139,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
   useCartSync();
 
   return (
@@ -147,17 +149,19 @@ function RootComponent() {
         <main className="flex-1">
           <Outlet />
         </main>
-        <footer className="border-t border-border bg-secondary py-10">
-          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <p className="font-display text-lg font-medium text-foreground">Sri Vishnu Priya Jewellers</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Timeless jewellery, trusted craftsmanship.
-            </p>
-            <p className="mt-6 text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Sri Vishnu Priya Jewellers. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        {location.pathname !== "/" && (
+          <footer className="border-t border-border bg-secondary py-10">
+            <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+              <p className="font-display text-lg font-medium text-foreground">Sri Vishnu Priya Jewellers</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Timeless jewellery, trusted craftsmanship.
+              </p>
+              <p className="mt-6 text-xs text-muted-foreground">
+                © {new Date().getFullYear()} Sri Vishnu Priya Jewellers. All rights reserved.
+              </p>
+            </div>
+          </footer>
+        )}
       </div>
       <Toaster />
     </QueryClientProvider>

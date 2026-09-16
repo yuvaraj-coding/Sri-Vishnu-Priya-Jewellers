@@ -1,7 +1,9 @@
+import { Link } from "@tanstack/react-router";
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <section className="relative flex min-h-[calc(100dvh-4rem)] items-center overflow-hidden bg-background">
+      <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-gold">
             Since 1985
@@ -14,12 +16,12 @@ export function Hero() {
             story of tradition, elegance, and trust passed down through generations.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="#collections"
+            <Link
+              to="/collections"
               className="inline-flex items-center justify-center rounded-md bg-gold px-8 py-3 text-sm font-semibold text-gold-foreground shadow-sm transition-colors hover:bg-gold/90"
             >
               Explore Collections
-            </a>
+            </Link>
           </div>
         </div>
       </div>
