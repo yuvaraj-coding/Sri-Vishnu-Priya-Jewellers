@@ -20,12 +20,6 @@ export function Hero() {
             >
               Explore Collections
             </a>
-            <a
-              href="#about"
-              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-8 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
-            >
-              Our Story
-            </a>
           </div>
         </div>
       </div>
