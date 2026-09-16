@@ -85,6 +85,48 @@ export type Database = {
           },
         ]
       }
+      shop_info: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          hours: string | null
+          id: string
+          map_url: string | null
+          note: string | null
+          phone: string | null
+          shop_name: string
+          updated_at: string
+          whatsapp: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          hours?: string | null
+          id?: string
+          map_url?: string | null
+          note?: string | null
+          phone?: string | null
+          shop_name?: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          hours?: string | null
+          id?: string
+          map_url?: string | null
+          note?: string | null
+          phone?: string | null
+          shop_name?: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
