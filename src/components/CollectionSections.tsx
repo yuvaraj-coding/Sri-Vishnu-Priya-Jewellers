@@ -75,6 +75,22 @@ export function CollectionSections() {
                     <p className="mt-3 text-sm font-medium text-gold">
                       {formatPrice(item.price, item.currency)}
                     </p>
+                    <Button
+                      size="sm"
+                      className="mt-4 w-full bg-gold text-gold-foreground hover:bg-gold/90"
+                      onClick={() =>
+                        addToCart({
+                          id: item.id,
+                          title: item.title,
+                          price: item.price,
+                          currency: item.currency,
+                          imageUrl: item.image_url,
+                        })
+                      }
+                    >
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      Add to Cart
+                    </Button>
                   </div>
                 </article>
               ))}
