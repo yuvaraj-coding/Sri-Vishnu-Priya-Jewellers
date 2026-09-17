@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100dvh-4rem)] items-center overflow-hidden bg-background">
+    <section className="relative flex min-h-[calc(100dvh-4rem-1px)] items-center overflow-hidden bg-background">
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-gold">
