@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import jewelleryVideo from "@/assets/jewellery-hero-background.mp4.asset.json";
+import jewelleryPoster from "@/assets/jewellery-hero-poster.jpg";
 
 export function Hero() {
   return (
@@ -11,6 +12,7 @@ export function Hero() {
         loop
         playsInline
         preload="metadata"
+        poster={jewelleryPoster}
         aria-hidden="true"
       >
         <source src={jewelleryVideo.url} type="video/mp4" />
