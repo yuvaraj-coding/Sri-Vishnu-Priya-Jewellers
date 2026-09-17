@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchCollections, fetchItems, formatPrice } from "@/lib/catalog";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
+import { useLocalCartStore } from "@/stores/localCartStore";
 
 export function CollectionSections() {
+  const addToCart = useLocalCartStore((state) => state.addItem);
   const collections = useQuery({ queryKey: ["collections"], queryFn: fetchCollections });
   const items = useQuery({ queryKey: ["items"], queryFn: fetchItems });
 
