@@ -13,12 +13,22 @@ import {
 } from "@/components/ui/sheet";
 import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import { useLocalCartStore } from "@/stores/localCartStore";
+import { formatPrice } from "@/lib/catalog";
 
 export function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const { items, isLoading, isSyncing, updateQuantity, removeItem, getCheckoutUrl, syncCart } =
     useCartStore();
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const localItems = useLocalCartStore((state) => state.items);
+  const updateLocalQuantity = useLocalCartStore((state) => state.updateQuantity);
+  const removeLocalItem = useLocalCartStore((state) => state.removeItem);
+  const localCount = localItems.reduce((sum, item) => sum + item.quantity, 0);
+  const localTotal = localItems.reduce(
+    (sum, item) => sum + (item.price ?? 0) * item.quantity,
+    0
+  );
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0) + localCount;
   const totalPrice = items.reduce(
     (sum, item) => sum + parseFloat(item.price.amount) * item.quantity,
     0
