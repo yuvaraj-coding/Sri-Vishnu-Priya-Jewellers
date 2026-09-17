@@ -1,17 +1,32 @@
 import { Link } from "@tanstack/react-router";
+import jewelleryVideo from "@/assets/jewellery-hero-background.mp4.asset.json";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100dvh-4rem-1px)] items-center overflow-hidden bg-background">
-      <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative flex min-h-[calc(100dvh-4rem-1px)] items-center overflow-hidden bg-charcoal">
+      <video
+        className="hero-background-video absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src={jewelleryVideo.url} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-charcoal/60" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-charcoal/25" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl animate-fade-in text-center">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-gold">
             Since 1985
           </p>
-          <h1 className="font-display text-4xl font-medium leading-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl font-medium leading-tight text-cream drop-shadow-sm sm:text-5xl lg:text-6xl">
             Sri Vishnu Priya Jewellers
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-cream/85 drop-shadow-sm">
             Timeless gold, diamond, and temple jewellery crafted with devotion. Every piece tells a
             story of tradition, elegance, and trust passed down through generations.
           </p>
@@ -25,8 +40,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <div className="pointer-events-none absolute -top-24 right-0 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-gold/10 blur-3xl" />
     </section>
   );
 }
